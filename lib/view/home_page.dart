@@ -5,7 +5,7 @@ a collection 'todo' é a minha agenda de contatos, mas acabei deixando isso pois
  */
 
 class HomePage extends StatelessWidget {
-  //static String tag = '/home';
+  static String tag = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +106,7 @@ class HomePage extends StatelessWidget {
     var endereco = TextEditingController();
     var cep = TextEditingController();
     var telefone = TextEditingController();
+    var aniversario = TextEditingController();
 
     showDialog(
         context: context,
@@ -196,6 +197,22 @@ class HomePage extends StatelessWidget {
                         return null;
                       } // fim do validator
                       ),
+                  // sexto campo, data de aniversário
+                  SizedBox(height: 5),
+                  Text('aniversário'),
+                  TextFormField(
+                      decoration: InputDecoration(
+                          hintText: 'Ex.: 05/08/1996',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      controller: aniversario,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Este campo nao pode ser vazio';
+                        } // fim if do validator
+                        return null;
+                      } // fim do validator
+                      ),
                 ],
               ),
             ),
@@ -214,7 +231,8 @@ class HomePage extends StatelessWidget {
                         'cep': cep.text,
                         'telefone': telefone.text,
                         'excluido': false,
-                        'feito': false
+                        'feito': false,
+                        'aniversario': aniversario.text
                       });
 
                       Navigator.of(context)
